@@ -438,8 +438,11 @@ bool tud_remote_wakeup(void) {
   return true;
 }
 
-bool tud_disconnect(void) {
+bool tud_disconnect(void)
+{
+  TU_VERIFY(dcd_disconnect);
   dcd_disconnect(_usbd_rhport);
+  _usbd_rhport = RHPORT_INVALID;
   return true;
 }
 
